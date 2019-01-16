@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/resources/style.css}">
+    <link rel="stylesheet" th:href="@{/resources/styleblog.css}">
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+<header id="header-id">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqfcAsD6WSKniz_ejkLCZd_jcEUSmvdgWuuz7WyPh0MtWBqSJQ">
+    <h1>HK3T.TxingEZ's blog</h1>
+    <p>Don't cry because it's over, smile because it happened.</p>
+    <a th:href="@{/create-new-blog}">Creat new blog</a>
+</header>
+<main>
+    <div id="section-2">
+        <div th:each="a : ${blog}">
+            <div class="post">
+                <img src="https://cdnb.artstation.com/p/assets/images/images/011/902/733/large/th-trung-nguy-n-shiba.jpg?1532009523">
+                <a class="new-post-content" th:href="@{/view-blog/__${a.id}__}" th:text="${a.title}"></a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a th:href="@{'/'(page=${blog.number - 1})}" th:if="${blog.hasPrevious()}">Previous</a>
+        <span th:text="${blog.number + 1}"></span>/<span th:text="${blog.totalPages}"></span>
+        <a th:href="@{'/'(page=${blog.number + 1})}" th:if="${blog.hasNext()}">Next</a>
+    </div>
+</main>
+<footer id="footer-id">
+    <div class="contact">
+        <span class="fa fa-facebook contact-box"></span>
+        <span class="fa fa-github contact-box"></span>
+        <span class="fa fa-google-plus contact-box"></span>
+        <span class="fa fa-linkedin contact-box"></span>
+    </div>
+    <p>Project by &copy;<a href="">HK3T.TxingEZ</a></p>
+</footer>
+</body>
+</html>
